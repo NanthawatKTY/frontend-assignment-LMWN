@@ -69,3 +69,10 @@ a.header.trip-item-detail-title{
     overflow: visible;
     height: auto;
 }
+
+
+
+/* Padding */
+.trip-item-detail-tag-container{
+    padding: 10px 0;
+}

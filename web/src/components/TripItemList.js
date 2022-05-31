@@ -1,13 +1,16 @@
 import './TripItemList.css';
 import React, {useState} from 'react';
+import { useQueryState } from 'react-router-use-location-state';
 import ReadmoreLess from './ReadmoreLess';
-import TripCategory from './TripCategory';
 // import {Link} from 'react-router-dom';
 
 function TripItemList(props) {
 
     //props received trips object
-    const {trip} = props
+    const {trip, paramKey} = props
+    const [param, setParam] = useQueryState('param', '');
+
+    const tags = []
 
     // fetch html tag from remaining photos
     const itemPhototag = []
@@ -15,7 +18,14 @@ function TripItemList(props) {
         itemPhototag.push(<img className="ui image" src={ImgTag} />)
     }
 
-    // console.log(trip.url);
+    // fetch html tag from remaining category
+    for(const tripTag of trip.tags) {
+        tags.push(<a className="ui label" onClick={() => paramKey(tripTag)}>{tripTag}</a>)
+    }
+
+    const handleClick = (value) => {
+        setParam(value)
+    }
         
     return (
         <div className="ui items trip_item">
@@ -31,7 +41,9 @@ function TripItemList(props) {
                         <ReadmoreLess limit={100} tripDesc={trip.description} tripURL={trip.url}/>
                     </div>
                     <div className="extra">
-                        <TripCategory tripTags={trip.tags}/>
+                        <div className="trip-item-detail-tag-container">
+                            <p>Category: {tags}</p>
+                        </div>
                     </div>
                     <div className="ui tiny images">
                         {itemPhototag}

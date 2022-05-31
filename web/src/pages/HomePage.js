@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { useQueryState } from 'react-router-use-location-state';
 import api from '../api/db_trip';
+import '../components/AppSearch.css';
 import TripItemList from '../components/TripItemList';
+import History from '../components/History';
 import AppSearch from '../components/AppSearch';
-import SearchPage from './SearchPage';
 
 const Home = () => {
 
   const [trips, setTrips] = useState([]);
   const [searchText, setSearchText] = useState('')
+  const [paramKey, setParamKey] = useQueryState('param', '');
 
 
   //Retreive data from API
@@ -25,36 +28,32 @@ const Home = () => {
     getAllTrips()
   }, []);
 
+
+
+  //Param key
+  const handleClick = (value) => {
+    setParamKey(value)
+  }
+
   const tripElements = trips.filter((trip) =>{
-    return (trip.title.toLowerCase().includes(searchText.toLowerCase()) 
-    || trip.description.toLowerCase().includes(searchText.toLowerCase())
-    ||trip.tags.find((tag) => {return tag.toLowerCase().includes(searchText.toLowerCase())}))
+    return (trip.title.toLowerCase().includes(paramKey.toLowerCase()) 
+    ||trip.description.toLowerCase().includes(paramKey.toLowerCase())
+    ||trip.tags.find((tag) => {return tag.toLowerCase().includes(paramKey.toLowerCase())}))
   }).map((trip, index) => {
-    return <TripItemList key={index} trip={trip}/>
+    return <TripItemList key={index} trip={trip} paramKey={handleClick}/>
   })  
 
-  if (searchText === '') {
-    return (
+  //Check if searchText is empty
+  // paramKey != '' ? console.log("do something") : console.log("ไม่มีจ้า")
+
+  return (
       <div className='app-container'>
-        <AppSearch trips={trips} onValueChange={setSearchText}/>  
+        <AppSearch trips={trips} onValueChange={setSearchText} paramKey={handleClick}  />
         <div className='app-grid'>
             {tripElements}
         </div>
-    </div>
+      </div>
     )
-  } else {
-    return ( 
-      <div className='app-container'>
-           
-          <AppSearch trips={trips} onValueChange={setSearchText} />
-          <div className='app-grid'>
-            <SearchPage tripElements={tripElements} />
-          </div>
-          
-        </div>
-    )
-  }
-    
 }
 
 export default Home

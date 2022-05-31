@@ -2,19 +2,18 @@ import React from 'react'
 import { BrowserRouter as Router, Routes, Route, Link} from "react-router-dom";
 import './App.css';
 import AppHeader from './components/AppHeader';
-import Home from './pages/HomePage';
-import SearchPage from './pages/SearchPage';
+import HomePage from './pages/HomePage';
+import History from './components/History';
 
 function App() {
   return (
-    <Router>
+    <Router history={History}>
       <div className="App">
         <Link to="/"><AppHeader /></Link>
         <section className='app-section'>
           <div className='app-container'>
             <Routes>
-              <Route path='/' element={<Home />}/>
-              <Route path='/search' element={<SearchPage />} />
+              <Route path='/' element={<HomePage/>}/>
             </Routes>
           </div>
         </section>
