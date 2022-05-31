@@ -1,0 +1,18 @@
+.app-search{
+    justify-content: center;
+    text-align: center;
+    margin: 1rem 1rem;
+}
+
+.app-search-input{
+    text-align: center;
+    width: 50%;
+    height: 40px;
+    box-sizing: border-box;
+    border: 1px solid rgba(99, 99, 99, 0.56);
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 16px;
+    color: rgba(0, 0, 0, 0.972);
+    /* outline: none; */
+}

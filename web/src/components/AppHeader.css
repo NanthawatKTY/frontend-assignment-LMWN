@@ -1,0 +1,13 @@
+.app-header{
+    margin: 5rem 3rem 0;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(52, 175, 237);
+  }
+
+  .app-header-tilte{
+    font-size: 48px;
+    font-weight: bold;
+  }
