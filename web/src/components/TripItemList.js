@@ -15,12 +15,12 @@ function TripItemList(props) {
     // fetch html tag from remaining photos
     const itemPhototag = []
     for(const ImgTag of trip.photos.slice(1)) {
-        itemPhototag.push(<img className="ui image" src={ImgTag} />)
+        itemPhototag.push(<img className="ui image trip-item-detail-img" src={ImgTag} />)
     }
 
     // fetch html tag from remaining category
     for(const tripTag of trip.tags) {
-        tags.push(<a className="ui label" onClick={() => paramKey(tripTag)}>{tripTag}</a>)
+        tags.push(<a className="" onClick={() => paramKey(tripTag)}> {tripTag}</a>)
     }
 
     const handleClick = (value) => {

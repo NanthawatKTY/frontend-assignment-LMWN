@@ -20,10 +20,9 @@ div.item.trip-item-content-container{
     padding: 30px;
 }
 
-div.image img.trip-item-main-img{
+img.trip-item-main-img{
     width: 100%;
-    height: 500px;
-    background-color: rgb(188, 86, 86);
+    height: 100%;
     border-radius: 10px 10px 10px 10px;
 }
 
@@ -46,10 +45,11 @@ a.header.trip-item-detail-title{
     color: #333;
 }
 
-.trip-item-detail-img-container img{
-    width: 100px;
-    height: 100px;
-    margin: 2rem 1.5rem;
+
+img.ui.image.trip-item-detail-img{
+    width: 150px;
+    height: 200px;
+    margin: 0.5rem 0.5rem;
     border-radius: 10px 10px 10px 10px;
 }
 
